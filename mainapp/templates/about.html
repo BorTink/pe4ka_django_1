@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}О программе{% endblock %}
+
+{% block content %}
+<h1>Я и моя образовательная программа</h1>
+
+<h2>Я (ФИО, фото, электронка, телефон)</h2>
+<div>
+    <p>ФИО: {{ student.full_name }}</p>
+    <p>Email: <a href="mailto:{{ student.email }}">{{ student.email }}</a></p>
+    <p>Телефон: {{ student.phone }}</p>
+</div>
+
+<hr/>
+
+<h2>{{ program.title }}</h2>
+<p>{{ program.description }}</p>
+
+<h3>Руководитель:</h3>
+<div>
+    <p>ФИО: {{ program.leader.full_name }}</p>
+    <p>Email: <a href="mailto:{{ program.leader.email }}">{{ program.leader.email }}</a></p>
+</div>
+
+<h3>Менеджер:</h3>
+<div>
+    <p>ФИО: {{ program.manager.full_name }}</p>
+    <p>Email: <a href="mailto:{{ program.manager.email }}">{{ program.manager.email }}</a></p>
+</div>
+
+<hr/>
+
+<h2>Мои сокурсники</h2>
+{% for classmate in classmates %}
+  <div style="margin-bottom: 20px;">
+      <p>ФИО: {{ classmate.full_name }}</p>
+      <p>Email: <a href="mailto:{{ classmate.email }}">{{ classmate.email }}</a></p>
+      <p>Телефон: {{ classmate.phone }}</p>
+  </div>
+{% endfor %}
+{% endblock %}

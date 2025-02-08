@@ -1,0 +1,16 @@
+<nav>
+    <ul>
+        <!-- Текстовые ссылки на внутренние страницы (открываются в текущем окне) -->
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'info1' %}">Инфо 1</a></li>
+        <li><a href="{% url 'solution' %}">Задача 1004</a></li>
+        <li><a href="{% url 'about' %}">О программе</a></li>
+
+        <!-- Ссылка на якорь (предположим, она будет вести на якорь #section2 на info1.html.html) -->
+        <li><a href="{% url 'info1' %}#section2">К разделу 2 на Инфо1</a></li>
+
+        <!-- Внешняя ссылка, открывающаяся в новом окне -->
+        <li><a href="https://www.google.com" target="_blank">Google</a></li>
+    </ul>
+</nav>
+<hr/>

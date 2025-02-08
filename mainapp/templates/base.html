@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Мой сайт на Django{% endblock %}</title>
+</head>
+<body>
+    <!-- Включаем навигацию -->
+    {% include 'includes/nav.html' %}
+
+    <!-- Основной контентный блок -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>2025 © Сайт на Dkango</p>
+    </footer>
+</body>
+</html>
