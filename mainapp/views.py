@@ -10,26 +10,28 @@ def info1_view(request):
     return render(request, 'info1.html')
 
 
+# mainapp/views.py
 def solution_view(request):
     """
-    Решение задачи 1004: Можно ли в квадратном зале площадью S
-    поместить круглую сцену радиусом R так, чтобы от стены
-    до сцены был проход не менее K?
-
-    Формула проверки: 2R + 2K <= sqrt(S)
+    Решение задачи 1012: проверяем, выполняются ли неравенства:
+    1) A < B < C
+    2) A < B > C
+    И выводим, какое из них выполняется, или что ни одно не выполняется.
     """
     result = None
     if request.method == 'POST':
         try:
-            S = float(request.POST.get('S'))
-            R = float(request.POST.get('R'))
-            K = float(request.POST.get('K'))
-            side = math.sqrt(S)
+            A = float(request.POST.get('A'))
+            B = float(request.POST.get('B'))
+            C = float(request.POST.get('C'))
 
-            if 2 * R + 2 * K <= side:
-                result = "Можно: сцена помещается с нужными проходами."
+            # Проверка неравенств
+            if A < B < C:
+                result = "Выполняется неравенство A < B < C"
+            elif A < B > C:
+                result = "Выполняется неравенство A < B > C"
             else:
-                result = "Нельзя: сцена слишком велика или проходы слишком широкие."
+                result = "Ни одно из указанных неравенств не выполняется"
         except (TypeError, ValueError):
             result = "Ошибка в введённых данных!"
 
@@ -45,38 +47,38 @@ def about_view(request):
     Данные берём из словарей.
     """
     student_info = {
-        'full_name': 'Иванов Иван Иванович',
-        'photo': 'img/avatar.jpg',
-        'email': 'ivanov@example.com',
-        'phone': '+7 (900) 123-45-67'
+        'full_name': 'Печененко Александр Владимирович',
+        'photo': 'mainapp/images/avatar.jpg',
+        'email': 'avpechenenko@edu.hse.ru',
+        'phone': '+7 (800) 555-35-35'
     }
 
     program_info = {
         'title': 'Разработка web-приложений на Python',
-        'description': 'Учебная программа по освоению Django, Flask и других web-технологий на Python.',
+        'description': 'Учебная программа по освоению web-приложений на Python.',
         'manager': {
-            'full_name': 'Петров Пётр Петрович',
-            'photo': 'img/manager.jpg',
-            'email': 'petrov@example.com'
+            'full_name': 'Марширов Виктор Викторович',
+            'photo': 'mainapp/images/manager.jpg',
+            'email': 'vmarshirov@hse.ru'
         },
         'leader': {
-            'full_name': 'Сидоров Сидор Сидорович',
-            'photo': 'img/leader.jpg',
-            'email': 'sidorov@example.com'
+            'full_name': 'Марширов Виктор Викторович',
+            'photo': 'mainapp/images/leader.jpg',
+            'email': 'vmarshirov@hse.ru'
         }
     }
 
     classmates = [
         {
-            'full_name': 'Сокурсник 1',
-            'photo': 'img/student1.jpg',
+            'full_name': 'Панькин Владислав Сергеевич',
+            'photo': 'mainapp/images/student1.jpg',
             'email': 'student1@example.com',
             'phone': '+7 (900) 123-45-11'
         },
         {
-            'full_name': 'Сокурсник 2',
-            'photo': 'img/student2.jpg',
-            'email': 'student2@example.com',
+            'full_name': 'Новацкий Иван Дмитриевич',
+            'photo': 'mainapp/images/student2.jpg',
+            'email': 'idnovatskiy@edu.hse.ru',
             'phone': '+7 (900) 123-45-22'
         },
     ]

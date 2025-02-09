@@ -1,6 +1,12 @@
+{% load static %}
 <nav>
     <ul>
         <!-- Текстовые ссылки на внутренние страницы (открываются в текущем окне) -->
+        <li>
+            <a href="{% url 'home' %}">
+                <img src="{% static 'mainapp/images/logo.jpg' %}" alt="Логотип" style="height:30px;">
+            </a>
+        </li>
         <li><a href="{% url 'home' %}">Главная</a></li>
         <li><a href="{% url 'info1' %}">Инфо 1</a></li>
         <li><a href="{% url 'solution' %}">Задача 1004</a></li>

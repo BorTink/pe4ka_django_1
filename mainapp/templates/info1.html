@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Информация 1{% endblock %}
 
@@ -36,6 +37,13 @@
   <li>Второй пункт нумерованного списка</li>
   <li>Третий пункт нумерованного списка</li>
 </ol>
+
+<h2 id="section3">Раздел 3</h2>
+<p>Изображение с пояснением.</p>
+<div style="text-align: center;">
+    <img src="{% static 'mainapp/images/sobaka.jpg' %}" alt="Собака в капюшоне тут" style="max-width:400px;">
+    <p>Рисунок 1. Собака в капюшоне</p>
+</div>
 
 
 <p><a href="#section1">Вернуться к началу страницы</a></p>

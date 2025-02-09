@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}О программе{% endblock %}
 
 {% block content %}
 <h1>Я и моя образовательная программа</h1>
 
-<h2>Я (ФИО, фото, электронка, телефон)</h2>
+<h2>Это я!</h2>
 <div>
     <p>ФИО: {{ student.full_name }}</p>
     <p>Email: <a href="mailto:{{ student.email }}">{{ student.email }}</a></p>
@@ -19,12 +19,14 @@
 
 <h3>Руководитель:</h3>
 <div>
+    <img src="{% static program.leader.photo %}" alt="Фото руководителя" style="width:100px;">
     <p>ФИО: {{ program.leader.full_name }}</p>
     <p>Email: <a href="mailto:{{ program.leader.email }}">{{ program.leader.email }}</a></p>
 </div>
 
 <h3>Менеджер:</h3>
 <div>
+    <img src="{% static program.manager.photo %}" alt="Фото менеджера" style="width:100px;">
     <p>ФИО: {{ program.manager.full_name }}</p>
     <p>Email: <a href="mailto:{{ program.manager.email }}">{{ program.manager.email }}</a></p>
 </div>
@@ -34,6 +36,7 @@
 <h2>Мои сокурсники</h2>
 {% for classmate in classmates %}
   <div style="margin-bottom: 20px;">
+      <img src="{% static classmate.photo %}" alt="Фото сокурсника" style="width:100px;">
       <p>ФИО: {{ classmate.full_name }}</p>
       <p>Email: <a href="mailto:{{ classmate.email }}">{{ classmate.email }}</a></p>
       <p>Телефон: {{ classmate.phone }}</p>
