@@ -10,30 +10,48 @@ def info1_view(request):
     return render(request, 'info1.html')
 
 
-# mainapp/views.py
 def solution_view(request):
     """
-    Решение задачи 1012: проверяем, выполняются ли неравенства:
-    1) A < B < C
-    2) A < B > C
-    И выводим, какое из них выполняется, или что ни одно не выполняется.
-    """
-    result = None
-    if request.method == 'POST':
-        try:
-            A = float(request.POST.get('A'))
-            B = float(request.POST.get('B'))
-            C = float(request.POST.get('C'))
+    Решение задачи:
+    На первой строке ввода: записи о переработках, вида "<имя>,<день>,<часы>"
+    разделённые символом "|".
+    На второй строке: день недели, по которому нужно подсчитать количество записей.
 
-            # Проверка неравенств
-            if A < B < C:
-                result = "Выполняется неравенство A < B < C"
-            elif A < B > C:
-                result = "Выполняется неравенство A < B > C"
-            else:
-                result = "Ни одно из указанных неравенств не выполняется"
-        except (TypeError, ValueError):
-            result = "Ошибка в введённых данных!"
+    Вывести целое число — количество записей для заданного дня.
+    """
+    result = None  # Результат (количество записей)
+    if request.method == 'POST':
+        # Пытаемся получить данные из формы
+        records_line = request.POST.get('records')
+        day_input = request.POST.get('day')
+
+        if records_line and day_input:
+            # Разделяем строку по символу '|'
+            records_list = records_line.split('|')
+
+            # Переменная-счётчик для подходящих записей
+            count = 0
+
+            # Обрабатываем каждую запись
+            for record in records_list:
+                # Каждая запись: "Имя,деньНедели,часы"
+                parts = record.split(',')
+                # Проверяем, что частей три
+                if len(parts) == 3:
+                    name = parts[0].strip()
+                    day_of_record = parts[1].strip()
+                    hours = parts[2].strip()  # не обязательно нужно конвертировать в int для подсчёта факта "записи"
+
+                    # Если день совпадает, увеличиваем счётчик
+                    if day_of_record.lower() == day_input.lower():
+                        count += 1
+                else:
+                    # Если формат записи неверный, можно либо игнорировать, либо сообщать об ошибке
+                    pass
+
+            result = f"Количество записей: {count}"
+        else:
+            result = "Пожалуйста, заполните обе строки ввода."
 
     context = {
         'result': result
